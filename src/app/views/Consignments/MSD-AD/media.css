@@ -1,0 +1,5 @@
+@media print {
+  #itemDetails {
+    width: 100%; 
+  }
+}

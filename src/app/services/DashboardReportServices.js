@@ -1,0 +1,49 @@
+import axios from 'myaxios';
+import * as apiroutes from '../../apiroutes'
+import localStorageService from './localStorageService'
+
+class DashboardReportServices {
+    getBatchConsumption = async (params) => {
+        const accessToken = await localStorageService.getItem('accessToken')
+        const promise = new Promise((resolve, reject) => {
+            axios
+                .get(apiroutes.ITEM_BATCH_CONSUMPTIONS, {
+                    params:params,
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    },
+                })
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((error) => {
+                    console.log('error', error)
+                    return resolve(error)
+                })
+        })
+        return await promise
+    }
+
+    getOrderSummary = async (params) => {
+        const accessToken = await localStorageService.getItem('accessToken')
+        const promise = new Promise((resolve, reject) => {
+            axios
+                .get(apiroutes.ORDER_DETAILS_GROUPED, {
+                    params:params,
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    },
+                })
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((error) => {
+                    console.log('error', error)
+                    return resolve(error)
+                })
+        })
+        return await promise
+    }
+}
+
+export default new DashboardReportServices()
