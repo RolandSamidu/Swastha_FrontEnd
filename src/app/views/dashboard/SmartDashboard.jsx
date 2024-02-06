@@ -674,7 +674,7 @@ class SmartDashboard extends Component {
 
                                     }}
                                 >
-                                    <span className="capitalize">{this.state.loadFromCloud ? "Load From Local" : "Load From EHR"}</span>
+                                    <span className="capitalize">{this.state.loadFromCloud ? " Load From Local" : "Load From EHR"}</span>
                                 </Button>
 
                             </Grid>
@@ -813,7 +813,7 @@ class SmartDashboard extends Component {
                             <SubTitle title="Dashboard Category" />
                             <ValidatorForm>
                                 <Autocomplete
-                                        disableClearable
+                                    disableClearable
                                     className="w-full"
                                     options={this.state.widgetTypes.filter((ele) => ele.status == "Active")}
                                     onChange={(e, value) => {
@@ -859,7 +859,7 @@ class SmartDashboard extends Component {
 
                                             <WidgetComponent
                                                 id={item.id}
-                                                title={item.displayName}
+                                                title={"xc"}
                                                 fieldset={item.component}
                                                 headerColor={item.otherProps.bar_color}
                                                 edit={false}

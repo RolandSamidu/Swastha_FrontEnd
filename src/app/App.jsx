@@ -42,6 +42,7 @@ const App = () => {
                         <GlobalCss />
                         <Router history={history}>
                             <AuthProvider>
+
                                 <MatxSuspense>
                                     <Switch>
                                         {/* AUTHENTICATION PAGES (SIGNIN, SIGNUP ETC.) */}

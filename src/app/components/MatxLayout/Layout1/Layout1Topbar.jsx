@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Icon,
     IconButton,
@@ -22,7 +22,11 @@ import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import { fullScreenRequest } from '../../../../utils';
 import localStorageService from 'app/services/localStorageService'
 import IssueServices from 'app/services/IssueServices'
-
+import Help from '../../../../assets/Help.png'
+import Notification from '../../../../assets/Notification.png'
+import Rectangle from '../../../../assets/Rectangle.png'
+import Profile from '../../../../assets/Sort-Down.png'
+import './Layout1Topbar.css'
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     topbar: {
         top: 0,
@@ -73,6 +77,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
         paddingRight: 5
     },
 }))
+
 
 const Layout1Topbar = () => {
     const theme = useTheme()
@@ -129,142 +134,189 @@ const Layout1Topbar = () => {
             }
         }
     }
-
+    const [sortIcon, setSortIcon] = useState(false)
+    const sortIconClick = () => {
+        setSortIcon(!sortIcon)
+    }
     return (
-        <div className={classes.topbar}>
-            <div className={clsx({ 'topbar-hold': true, fixed: fixed })}>
-                <div className="flex justify-between items-center h-full">
-                    <div className="flex">
-                        <IconButton
-                            onClick={handleSidebarToggle}
-                            className="hide-on-pc"
-                        >
-                            <Icon>menu</Icon>
+        // <div className={classes.topbar}>
+        //     <div className={clsx({ 'topbar-hold': true, fixed: fixed })}>
+        //         <div className="flex justify-between items-center h-full">
+        //             <div className="flex">
+        //                 <IconButton
+        //                     onClick={handleSidebarToggle}
+        //                     className="hide-on-pc"
+        //                 >
+        //                     <Icon>menu</Icon>
 
 
 
-                        </IconButton>
+        //                 </IconButton>
 
 
 
-                        <div className="hide-on-mobile">
-                            {/* <IconButton>
-                                <Icon>mail_outline</Icon>
-                            </IconButton>
+        //                 <div className="hide-on-mobile">
+        //                     {/* <IconButton>
+        //                         <Icon>mail_outline</Icon>
+        //                     </IconButton>
 
-                            <IconButton>
-                                <Icon>web_asset</Icon>
-                            </IconButton>
+        //                     <IconButton>
+        //                         <Icon>web_asset</Icon>
+        //                     </IconButton>
 
-                            <IconButton>
-                                <Icon>star_outline</Icon>
-                            </IconButton> */}
-                        </div>
+        //                     <IconButton>
+        //                         <Icon>star_outline</Icon>
+        //                     </IconButton> */}
+        //                 </div>
+        //             </div>
+        //             <div className="flex items-center">
+        //                 {/*  <MatxSearchBox /> */}
+
+
+        //                 {/* <NotificationProvider>
+        //                     <NotificationBar />
+        //                 </NotificationProvider> */}
+
+
+        //                 <Link
+        //                     className={[classes.menuItemWidthLess]}
+        //                     to="/createIssue"
+        //                     target="_blank"
+        //                 >
+        //                     <Icon> airplay </Icon>
+        //                     <span> Raise to Issue </span>
+        //                 </Link>
+
+        //                 <a
+        //                     className={[classes.menuItemWidthLess]}
+        //                     href="https://www.youtube.com/watch?v=2pIHHnEPjuA&list=PL-ADJbmay8LdsWMNC_gUeiYuZnPcTy_op"
+        //                     target="_blank"
+        //                 >
+        //                     <Icon> <span class="material-icons">
+        //                         help_outlinehjvjbb
+        //                     </span> </Icon>
+        //                     <span> Video Guide ugg</span>
+        //                 </a>
+
+        //                 <a
+        //                     className={[classes.menuItemWidthLess]}
+        //                     href="https://drive.google.com/drive/folders/1revXfeXxTTT9dMpqzGqn_pSL0-SeFjUS?usp=drive_link"
+        //                     target="_blank"
+        //                 >
+        //                     <Icon> <span class="material-icons">
+        //                         folder_open ff
+        //                     </span> </Icon>
+        //                     <span> PDF Guides </span>
+        //                 </a>
+
+        //                 {/* <NotificationBar2 /> */}
+
+        //                 {/*   <ShoppingCart /> */}
+
+        //                 <MatxMenu
+        //                     menuButton={
+        //                         <div className={classes.userMenu}>
+        //                             <Hidden xsDown>
+        //                                 <span>
+        //                                     Hi <strong>{user.name}</strong>
+        //                                 </span>
+        //                             </Hidden>
+        //                             <Avatar
+        //                                 className="cursor-pointer"
+        //                                 src={user.avatar}
+        //                             />
+        //                         </div>
+        //                     }
+        //                 >
+        //                     <MenuItem>
+        //                         <Link className={classes.menuItem} to="/">
+        //                             <Icon> home </Icon>
+        //                             <span className="pl-4"> Home </span>
+        //                         </Link>
+        //                     </MenuItem>
+        //                     {/* <MenuItem>
+        //                         <Link
+        //                             className={classes.menuItem}
+        //                             to="/page-layouts/user-profile"
+        //                         >
+        //                             <Icon> person </Icon>
+        //                             <span className="pl-4"> Profile </span>
+        //                         </Link>
+        //                     </MenuItem> */}
+
+        //                     <MenuItem>
+        //                         {/* <Link
+        //                             className={classes.menuItem}
+        //                             to="/createIssue"
+        //                         >
+        //                             <Icon> airplay </Icon>
+        //                             <span className="pl-4"> Raise to Issue </span>
+        //                         </Link> */}
+        //                     </MenuItem>
+        //                     <MenuItem className={classes.menuItem} onClick={() => {
+        //                         handleHelpLink()
+        //                     }}>
+        //                         <Icon> help </Icon>
+        //                         <span className="pl-4"> Help For Screen </span>
+        //                     </MenuItem>
+        //                     <MenuItem
+        //                         onClick={logout}
+        //                         className={classes.menuItem}
+        //                     >
+        //                         <Icon> power_settings_new </Icon>
+        //                         <span className="pl-4"> Logout </span>
+        //                     </MenuItem>
+        //                 </MatxMenu>
+
+        //                 <Tooltip title="Full Screen">
+        //                     <FullscreenIcon className="cursor-pointer" color="action" onClick={() => {
+        //                         fullScreenRequest('home123');
+        //                     }} />
+        //                 </Tooltip>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
+        <div className="h-screen">
+            <div className="main-container">
+                <div className="flex-col-container">
+                    <h1 className="greeting">Hello, Stephen king!</h1>
+                    <p className="date-info">Monday 26th, 2023</p>
+                </div>
+                <div className="icon-container">
+                    <div>
+                        <img src={Help} alt="" width={25} height={25} />
                     </div>
-                    <div className="flex items-center">
-                        {/*  <MatxSearchBox /> */}
+                    <div>
+                        <img src={Notification} alt="" width={25} height={25} />
+                    </div>
+                </div>
+                <div className="profile-container">
+                    <div className="flex justify-end">
+                        <div className="profile-card">
+                            <div>
+                                <img src={Rectangle} alt="" width={38} height={38} />
+                            </div>
+                            <div className="profile-info">
+                                <h1 className="profile-name">Stephen king</h1>
+                                <p className="profile-title">Cardiologist</p>
+                            </div>
+                            <div className="sort-icon" onClick={sortIconClick}>
+                                <img src={Profile} alt="" width={20} height={20} />
+                            </div>
 
-
-                        {/* <NotificationProvider>
-                            <NotificationBar />
-                        </NotificationProvider> */}
-
-
-                        <Link
-                            className={[classes.menuItemWidthLess]}
-                            to="/createIssue"
-                            target="_blank"
-                        >
-                            <Icon> airplay </Icon>
-                            <span> Raise to Issue </span>
-                        </Link>
-
-                        <a
-                            className={[classes.menuItemWidthLess]}
-                            href="https://www.youtube.com/watch?v=2pIHHnEPjuA&list=PL-ADJbmay8LdsWMNC_gUeiYuZnPcTy_op"
-                            target="_blank"
-                        >
-                            <Icon> <span class="material-icons">
-                                help_outline
-                            </span> </Icon>
-                            <span> Video Guide </span>
-                        </a>
-
-                        <a
-                            className={[classes.menuItemWidthLess]}
-                            href="https://drive.google.com/drive/folders/1revXfeXxTTT9dMpqzGqn_pSL0-SeFjUS?usp=drive_link"
-                            target="_blank"
-                        >
-                            <Icon> <span class="material-icons">
-                            folder_open
-                            </span> </Icon>
-                            <span> PDF Guides </span>
-                        </a>
-
-                        {/* <NotificationBar2 /> */}
-
-                        {/*   <ShoppingCart /> */}
-
-                        <MatxMenu
-                            menuButton={
-                                <div className={classes.userMenu}>
-                                    <Hidden xsDown>
-                                        <span>
-                                            Hi <strong>{user.name}</strong>
-                                        </span>
-                                    </Hidden>
-                                    <Avatar
-                                        className="cursor-pointer"
-                                        src={user.avatar}
-                                    />
+                        </div>
+                        <div className={classes.dropdown}>
+                            {
+                                sortIcon &&
+                                <div className="sort-menu">
+                                    <ul>
+                                        <li>Profile</li>
+                                        <li>Logout</li>
+                                    </ul>
                                 </div>
                             }
-                        >
-                            <MenuItem>
-                                <Link className={classes.menuItem} to="/">
-                                    <Icon> home </Icon>
-                                    <span className="pl-4"> Home </span>
-                                </Link>
-                            </MenuItem>
-                            {/* <MenuItem>
-                                <Link
-                                    className={classes.menuItem}
-                                    to="/page-layouts/user-profile"
-                                >
-                                    <Icon> person </Icon>
-                                    <span className="pl-4"> Profile </span>
-                                </Link>
-                            </MenuItem> */}
-
-                            <MenuItem>
-                                {/* <Link
-                                    className={classes.menuItem}
-                                    to="/createIssue"
-                                >
-                                    <Icon> airplay </Icon>
-                                    <span className="pl-4"> Raise to Issue </span>
-                                </Link> */}
-                            </MenuItem>
-                            <MenuItem className={classes.menuItem} onClick={() => {
-                                handleHelpLink()
-                            }}>
-                                <Icon> help </Icon>
-                                <span className="pl-4"> Help For Screen </span>
-                            </MenuItem>
-                            <MenuItem
-                                onClick={logout}
-                                className={classes.menuItem}
-                            >
-                                <Icon> power_settings_new </Icon>
-                                <span className="pl-4"> Logout </span>
-                            </MenuItem>
-                        </MatxMenu>
-
-                        <Tooltip title="Full Screen">
-                            <FullscreenIcon className="cursor-pointer" color="action" onClick={() => {
-                                fullScreenRequest('home123');
-                            }} />
-                        </Tooltip>
+                        </div>
                     </div>
                 </div>
             </div>
